@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <!-- كود جوجل أدسنس الخاص بك (لإثبات الملكية وعرض الإعلانات) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6012487976916373" crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ألغاز العباقرة - 150 مرحلة</title>
@@ -48,10 +51,8 @@
         /* =========================================
            3. مساحات الإعلانات (Ads)
            ========================================= */
-        /* البانر السفلي الدائم */
-        .ad-banner { position: absolute; bottom: 0; width: 100%; height: 60px; background: repeating-linear-gradient(45deg, #222, #222 10px, #333 10px, #333 20px); display: flex; justify-content: center; align-items: center; color: rgba(255,255,255,0.5); font-size: 12px; font-weight: bold; z-index: 40; border-top: 1px solid #444; }
+        .ad-banner { position: absolute; bottom: 0; width: 100%; height: 60px; background: #111; display: flex; justify-content: center; align-items: center; color: rgba(255,255,255,0.5); font-size: 12px; font-weight: bold; z-index: 40; border-top: 1px solid #444; }
         
-        /* إعلان الشاشة الكاملة (بين المراحل) */
         #interstitialAd { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 150; flex-direction: column; justify-content: center; align-items: center; color: white; }
         .ad-content { width: 80%; height: 50%; background: #222; border: 2px dashed #555; display: flex; justify-content: center; align-items: center; font-size: 20px; color: #888; margin-bottom: 20px; }
         .btn-skip-ad { background: #333; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; display: none; }
@@ -66,7 +67,6 @@
 <body>
 
     <!-- موسيقى اللعبة -->
-    <!-- رابط موسيقى مجانية خفيفة، تعمل تلقائياً عند الضغط على "ابدأ" -->
     <audio id="bgMusic" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
     </audio>
@@ -77,8 +77,10 @@
         <div class="game-subtitle">تحديات المنطق والذكاء - 150 مرحلة</div>
         <button class="btn-play" onclick="startGame()">ابدأ اللعب ▶</button>
         <button class="btn-settings" id="btnSound" onclick="toggleSound()">🔊 الموسيقى: شغالة</button>
-        <div style="font-size: 12px; color: #666; position: absolute; bottom: 70px;">الإصدار 1.0.0 (ننتظر التحديث الجاي)</div>
-        <div class="ad-banner">مساحة إعلانية (Google AdMob Banner)</div>
+        <div style="font-size: 12px; color: #666; position: absolute; bottom: 70px;">الإصدار 1.0.0</div>
+        
+        <!-- مساحة إعلانية سفلية -->
+        <div class="ad-banner">مساحة إعلانية (سيتم ملؤها بواسطة AdSense قريباً)</div>
     </div>
 
     <!-- 2. شاشة اللعب -->
@@ -100,12 +102,13 @@
             </div>
         </div>
 
-        <div class="ad-banner">مساحة إعلانية (Google AdMob Banner)</div>
+        <!-- مساحة إعلانية سفلية -->
+        <div class="ad-banner">مساحة إعلانية (سيتم ملؤها بواسطة AdSense قريباً)</div>
     </div>
 
     <!-- 3. شاشة إعلان الشاشة الكاملة (تظهر كل 5 مراحل) -->
     <div id="interstitialAd">
-        <div class="ad-content">مساحة إعلان فيديو (AdMob Interstitial)</div>
+        <div class="ad-content">مساحة إعلان فيديو (سيتم دمجها لاحقاً)</div>
         <div id="adTimer" style="margin-bottom: 15px;">يمكنك التخطي بعد 3 ثواني...</div>
         <button class="btn-skip-ad" id="btnSkipAd" onclick="closeAd()">تخطي الإعلان ➔</button>
     </div>
@@ -167,7 +170,6 @@
 
         // توليد المراحل من 6 إلى 150 برمجياً لضمان اكتمال اللعبة بـ 150 مرحلة حقيقية
         for (let i = 6; i <= 150; i++) {
-            // توليد معادلات رياضية وألغاز تسلسلية لزيادة الصعوبة
             let num1 = Math.floor(Math.random() * 20) + i;
             let num2 = Math.floor(Math.random() * 10) + 1;
             let answer = num1 * num2;
@@ -205,7 +207,7 @@
         function startGame() {
             document.getElementById('mainMenu').style.display = 'none';
             document.getElementById('gameScreen').style.display = 'flex';
-            if(!isMusicPlaying) { toggleSound(); } // تشغيل الموسيقى عند الضغط
+            if(!isMusicPlaying) { toggleSound(); } 
             initLevel();
         }
 
@@ -262,7 +264,6 @@
                     saveData(); 
                     overlay.style.display = "none"; 
                     
-                    // نظام الإعلانات: إظهار إعلان كل 5 مراحل
                     if(currentLevel % 5 === 0 && currentLevel < 150) {
                         showAd();
                     } else {
@@ -288,7 +289,7 @@
                 document.getElementById('hintText').style.display = 'block';
                 saveData();
             } else {
-                alert("عملاتك غير كافية! شارك اللعبة لتربح الذهب (قريباً).");
+                alert("عملاتك غير كافية! تفاعل مع الإعلانات لدعمنا.");
             }
         }
 
@@ -298,7 +299,7 @@
         }
 
         // ==========================================
-        // نظام الإعلانات الوهمي (تطبيق فعلي)
+        // نظام الإعلانات
         // ==========================================
         function showAd() {
             const adScreen = document.getElementById('interstitialAd');
